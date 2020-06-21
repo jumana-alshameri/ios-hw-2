@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         // MARK: -   1️⃣ تحت الخط membersNamesArray إلي المصفوفه memberقم بإضافة المتغير
         
-        
+        membersNamesArray.append(member.capitalized)
         
         // MARK: -   النهاية
         
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         
         // MARK: -  4️⃣ functionCall داخل المتغير  secretNameLetter قم باستدعاء الدالة
         
-        var functionCall = ""
+        var functionCall = secretNameLetter(membernamearray: membersNamesArray)
         
         
         // MARK: -   النهاية
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         
         // MARK: -  5️⃣ functionCall داخل المتغير  secretNameEmoji قم باستدعاء الدالة
         
-        var functionCall = ""
+        var functionCall = secretNameEmoji(membernamearray: membersNamesArray)
         
         // MARK: -   النهاية
         
@@ -65,7 +65,14 @@ class ViewController: UIViewController {
     
     
     // MARK: - 2️⃣ تحت هذا الخط secretNameLetter قم بكتابة الداله
-    
+    func secretNameLetter(membernamearray:[String]) -> String{
+        var firstletterarray: [String] = []
+        for memberName in membersNamesArray {
+            firstletterarray.append(String (memberName.prefix(1)))
+        }
+        print(firstletterarray.joined())
+        return firstletterarray.joined()
+    }
     
     // MARK: -   النهاية
     
@@ -74,7 +81,18 @@ class ViewController: UIViewController {
     
     
     // MARK: - 3️⃣ تحت هذا الخط secretNameEmoji قم بكتابة الداله
-    
+    func secretNameEmoji(membernamearray: [String] ) -> String{
+        let emojiDictionaryEnglish = [ "A": "💧", "B": "🚥", "C": "☀️", "D": "📸", "E": "👀", "F": "🦋", "G": "⚡️", "H": "🌈", "I": "🙈", "J": "❓", "K": "⭕️", "L": "😍", "M": "😇", "N": "🔒", "O": "🤍", "P": "🈴", "Q": "🆔", "R": "🅰️", "S": "⚜️", "T": "⚠️", "U": "〽️", "V": "💲", "W": "🎶", "X": "🟣", "Y": "🎵", "Z": "®️", " ": " ", " ": " ", ]
+        var emojiletterarray: [String] = []
+        var firstletterarray: [String] = []
+        for memberEmoji in membersNamesArray {
+            firstletterarray.append(String (memberEmoji.prefix(1)))
+            var emoji = emojiDictionaryEnglish[String (memberEmoji.prefix(1))]
+            emojiletterarray.append(emoji!)
+            print(emojiletterarray.joined())
+        }
+        return emojiletterarray.joined()
+    }
     
     // MARK: -   النهاية
     
