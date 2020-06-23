@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var membersNamesArray  : [String] = [""]
+    var membersNamesArray  : [String] = []
     
     var convertToLetter = true
     @IBOutlet weak var secretSocietyNameLabel: UILabel!
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         // MARK: -   1️⃣ تحت الخط membersNamesArray إلي المصفوفه memberقم بإضافة المتغير
         
-        membersNamesArray.append(member.capitalized)
+        membersNamesArray.append(member)
         
         // MARK: -   النهاية
         
@@ -65,13 +65,13 @@ class ViewController: UIViewController {
     
     
     // MARK: - 2️⃣ تحت هذا الخط secretNameLetter قم بكتابة الداله
-    func secretNameLetter(membernamearray:[String]) -> String{
-        var firstletterarray: [String] = []
-        for memberName in membersNamesArray {
-            firstletterarray.append(String (memberName.prefix(1)))
+    func secretNameLetter(members:[String]) -> String{
+        var secret = ""
+        
+        for member in members{
+            secret += String(member.prefix(1)).uppercased()
         }
-        print(firstletterarray.joined())
-        return firstletterarray.joined()
+        return secret
     }
     
     // MARK: -   النهاية
@@ -81,17 +81,44 @@ class ViewController: UIViewController {
     
     
     // MARK: - 3️⃣ تحت هذا الخط secretNameEmoji قم بكتابة الداله
-    func secretNameEmoji(membernamearray: [String] ) -> String{
-        let emojiDictionaryEnglish = [ "A": "💧", "B": "🚥", "C": "☀️", "D": "📸", "E": "👀", "F": "🦋", "G": "⚡️", "H": "🌈", "I": "🙈", "J": "❓", "K": "⭕️", "L": "😍", "M": "😇", "N": "🔒", "O": "🤍", "P": "🈴", "Q": "🆔", "R": "🅰️", "S": "⚜️", "T": "⚠️", "U": "〽️", "V": "💲", "W": "🎶", "X": "🟣", "Y": "🎵", "Z": "®️", " ": " ", " ": " ", ]
-        var emojiletterarray: [String] = []
-        var firstletterarray: [String] = []
-        for memberEmoji in membersNamesArray {
-            firstletterarray.append(String (memberEmoji.prefix(1)))
-            var emoji = emojiDictionaryEnglish[String (memberEmoji.prefix(1)).uppercased()]
-            emojiletterarray.append(emoji!)
-            print(emojiletterarray.joined())
+    func secretNameEmoji(array: [String] ) -> String{
+        var secret: String = ""
+        let emojiLetter: [String: String] = [
+            "A": "💧",
+            "B": "🚥",
+            "C": "☀️",
+            "D": "📸",
+            "E": "👀",
+            "F": "🦋",
+            "G": "⚡️",
+            "H": "🌈",
+            "I": "🙈",
+            "J": "👃",
+            "K": "⭕️",
+            "L": "😍",
+            "M": "😇",
+            "N": "🔒",
+            "O": "🤍",
+            "P": "🈴",
+            "Q": "🆔",
+            "R": "🅰️",
+            "S": "⚜️",
+            "T": "⚠️",
+            "U": "〽️",
+            "V": "💲",
+            "W": "🎶",
+            "X": "🟣",
+            "Y": "🎵",
+            "Z": "®️",
+        ]
+        // take first leeter from each array and append it to secret
+        
+        for member in array{
+            let prefix = String(member.prefix(1)).uppercased()
+            let emoji = emojiLetter [prefix] ?? "⁉️"
+            secret += emoji
         }
-        return emojiletterarray.joined()
+        return secret
     }
     
     // MARK: -   النهاية
@@ -99,10 +126,10 @@ class ViewController: UIViewController {
     // Bonus
     func encryptWith(eomji: Bool,  array: [String]) -> String{
         if eomji{
-            return secretNameEmoji(membernamearray: array)
+            return secretNameEmoji(array: array)
         }
         else{
-            return secretNameLetter(membernamearray: array)
+            return secretNameLetter(members: array)
         }
     }
 }
